@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SoulSpiti OMS — Vidhi Gupta</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* SoulSpiti Brand */
+  --walnut:       #3D2B1F;
+  --walnut-mid:   #5C3D2A;
+  --walnut-light: #8B6040;
+  --cream:        #F5EFE0;
+  --cream-dark:   #EDE4CE;
+  --cream-deeper: #E0D4B8;
+  --pine:         #8B6914;
+  --pine-light:   #B8941E;
+  --sage:         #5C7A4E;
+  --sage-light:   #7A9E6A;
+  --sage-bg:      #EAF0E6;
+  --terra:        #C4643C;
+  --terra-light:  #E08060;
+  --terra-bg:     #F7EAE4;
+  --offblack:     #1C1410;
+  --mustard:      #C89B28;
+  --mustard-bg:   #FBF3DC;
+
+  /* Notion-style neutrals */
+  --n-white:      #FFFFFF;
+  --n-surface:    #FAFAF8;
+  --n-border:     #E8E2D4;
+  --n-border-mid: #D4CAБА;
+  --n-text:       #1C1410;
+  --n-text-mid:   #4A3F35;
+  --n-text-muted: #8A7968;
+
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 16px;
+  --r-xl: 24px;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--cream);
+  color: var(--offblack);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+/* ─── HERO ─── */
+.hero {
+  background: var(--walnut);
+  padding: 80px 0 68px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -80px;
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  background: rgba(139,96,64,0.18);
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -40px; left: -50px;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: rgba(92,122,78,0.12);
+}
+
+.hero-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 36px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--pine-light);
+  background: rgba(139,105,20,0.18);
+  border: 1px solid rgba(184,148,30,0.3);
+  border-radius: 20px;
+  padding: 5px 14px;
+  margin-bottom: 24px;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 54px;
+  line-height: 1.08;
+  color: var(--cream);
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--pine-light);
+}
+
+.hero-sub {
+  font-size: 16px;
+  color: rgba(245,239,224,0.7);
+  line-height: 1.7;
+  max-width: 560px;
+  margin-bottom: 40px;
+}
+
+.hero-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(245,239,224,0.15);
+}
+
+.hero-chip {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: rgba(245,239,224,0.07);
+  border: 1px solid rgba(245,239,224,0.12);
+  border-radius: var(--r-md);
+  padding: 10px 16px;
+}
+.hc-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(245,239,224,0.45);
+}
+.hc-value {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--cream);
+}
+
+/* ─── METRICS ─── */
+.metrics {
+  background: var(--offblack);
+  padding: 0;
+}
+.metrics-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.met {
+  padding: 32px 24px;
+  border-right: 1px solid rgba(255,255,255,0.07);
+  text-align: center;
+  cursor: default;
+  transition: background 0.2s;
+}
+.met:hover { background: rgba(255,255,255,0.03); }
+.met:last-child { border-right: none; }
+.met-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 40px;
+  line-height: 1;
+  font-weight: 600;
+  color: var(--pine-light);
+  display: block;
+  transition: color 0.2s;
+}
+.met:hover .met-num { color: var(--mustard); }
+.met-label {
+  font-size: 11px;
+  color: rgba(255,255,255,0.38);
+  margin-top: 6px;
+  letter-spacing: 0.03em;
+}
+
+/* ─── STRATEGY RIBBON ─── */
+.strategy-ribbon {
+  background: var(--sage);
+  padding: 18px 0;
+}
+.sr-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 36px;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+.sr-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  flex-shrink: 0;
+}
+.sr-pills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.sr-pill {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--cream);
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 20px;
+  padding: 4px 12px;
+}
+
+/* ─── MAIN ─── */
+.main {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 36px;
+}
+
+/* ─── SECTION ─── */
+.section { padding: 68px 0 0; }
+
+.section-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.s-num {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--walnut);
+  color: var(--cream);
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.s-tag {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--n-text-muted);
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 30px;
+  font-weight: 400;
+  color: var(--walnut);
+  line-height: 1.25;
+  margin-bottom: 20px;
+}
+
+.body-text {
+  font-size: 15px;
+  color: var(--n-text-mid);
+  line-height: 1.8;
+}
+.body-text p + p { margin-top: 14px; }
+.body-text strong { color: var(--walnut); font-weight: 600; }
+
+.divider {
+  height: 1px;
+  background: var(--n-border);
+  margin: 68px 0 0;
+}
+
+/* ─── CALLOUT ─── */
+.callout {
+  border-radius: var(--r-lg);
+  padding: 22px 26px;
+  margin: 24px 0;
+}
+.callout.sage   { background: var(--sage-bg);   border-left: 3px solid var(--sage); }
+.callout.terra  { background: var(--terra-bg);  border-left: 3px solid var(--terra); }
+.callout.walnut { background: var(--cream-dark); border-left: 3px solid var(--walnut); }
+.callout.mustard{ background: var(--mustard-bg); border-left: 3px solid var(--mustard); }
+
+.c-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.callout.sage .c-label    { color: var(--sage); }
+.callout.terra .c-label   { color: var(--terra); }
+.callout.walnut .c-label  { color: var(--walnut-mid); }
+.callout.mustard .c-label { color: var(--pine); }
+
+.c-text { font-size: 14px; line-height: 1.75; color: var(--n-text-mid); }
+.c-text strong { color: var(--n-text); font-weight: 600; }
+
+/* ─── PULL QUOTE ─── */
+.pq {
+  margin: 36px 0;
+  padding: 28px 32px;
+  background: var(--walnut);
+  border-radius: var(--r-xl);
+  position: relative;
+  overflow: hidden;
+}
+.pq::before {
+  content: '"';
+  position: absolute;
+  top: -20px; left: 20px;
+  font-family: 'Playfair Display', serif;
+  font-size: 140px;
+  color: rgba(255,255,255,0.05);
+  line-height: 1;
+  pointer-events: none;
+}
+.pq p {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  color: var(--cream);
+  line-height: 1.5;
+  font-style: italic;
+  position: relative;
+}
+.pq cite {
+  display: block;
+  font-size: 11px;
+  font-style: normal;
+  color: rgba(245,239,224,0.45);
+  margin-top: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* ─── BEFORE / AFTER TOGGLE ─── */
+.ba-wrap { margin: 28px 0; }
+.ba-toggle {
+  display: flex;
+  background: var(--cream-dark);
+  border-radius: 50px;
+  padding: 4px;
+  width: fit-content;
+  margin-bottom: 18px;
+  gap: 4px;
+}
+.ba-btn {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 7px 20px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: transparent;
+  color: var(--n-text-muted);
+  letter-spacing: 0.03em;
+}
+.ba-btn.active {
+  background: var(--walnut);
+  color: var(--cream);
+}
+.ba-panel { display: none; }
+.ba-panel.active { display: block; }
+
+.ba-card {
+  background: var(--n-white);
+  border: 1px solid var(--n-border);
+  border-radius: var(--r-lg);
+  padding: 24px;
+}
+.ba-card.before { border-top: 3px solid var(--terra); }
+.ba-card.after  { border-top: 3px solid var(--sage); }
+
+.ba-title {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.ba-card.before .ba-title { color: var(--terra); }
+.ba-card.after  .ba-title { color: var(--sage); }
+
+.ba-rows { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+.ba-row {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--n-border);
+  border-right: 1px solid var(--n-border);
+}
+.ba-row:nth-child(even) { border-right: none; }
+.ba-row:nth-last-child(-n+2) { border-bottom: none; }
+.ba-k { font-size: 11px; color: var(--n-text-muted); }
+.ba-v { font-size: 14px; font-weight: 600; color: var(--walnut); }
+
+/* ─── OBSERVATION CARDS ─── */
+.obs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 24px 0;
+}
+.obs-card {
+  background: var(--n-white);
+  border: 1px solid var(--n-border);
+  border-radius: var(--r-lg);
+  padding: 20px;
+  transition: border-color 0.2s, transform 0.15s;
+  cursor: default;
+}
+.obs-card:hover {
+  border-color: var(--walnut-light);
+  transform: translateY(-2px);
+}
+.obs-icon {
+  width: 36px; height: 36px;
+  border-radius: var(--r-md);
+  background: var(--cream-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+.obs-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--walnut);
+  margin-bottom: 6px;
+  line-height: 1.35;
+}
+.obs-text {
+  font-size: 12px;
+  color: var(--n-text-muted);
+  line-height: 1.6;
+}
+.obs-tag {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 20px;
+  background: var(--sage-bg);
+  color: var(--sage);
+}
+
+/* ─── STRATEGY CARDS ─── */
+.strat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 24px 0;
+}
+.strat-card {
+  background: var(--n-white);
+  border: 1px solid var(--n-border);
+  border-radius: var(--r-lg);
+  padding: 22px;
+  transition: border-color 0.2s;
+}
+.strat-card:hover { border-color: var(--walnut-light); }
+.strat-card.accent { background: var(--walnut); }
+
+.sc-eye {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.strat-card:not(.accent) .sc-eye { color: var(--n-text-muted); }
+.strat-card.accent .sc-eye { color: rgba(245,239,224,0.5); }
+
+.sc-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  line-height: 1.35;
+}
+.strat-card:not(.accent) .sc-title { color: var(--walnut); }
+.strat-card.accent .sc-title { color: var(--cream); }
+
+.sc-text { font-size: 13px; line-height: 1.65; }
+.strat-card:not(.accent) .sc-text { color: var(--n-text-mid); }
+.strat-card.accent .sc-text { color: rgba(245,239,224,0.65); }
+
+.sc-badge {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.04em;
+}
+.badge-chose  { background: var(--sage-bg);    color: var(--sage); }
+.badge-tradeoff { background: var(--mustard-bg); color: var(--pine); }
+.badge-risk   { background: var(--terra-bg);   color: var(--terra); }
+
+/* ─── ACCORDION ITERATIONS ─── */
+.acc-wrap { margin: 24px 0; }
+.acc-item {
+  background: var(--n-white);
+  border: 1px solid var(--n-border);
+  border-radius: var(--r-lg);
+  margin-bottom: 10px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.acc-item:hover { border-color: var(--walnut-light); }
+
+.acc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px;
+  cursor: pointer;
+  user-select: none;
+}
+.acc-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.acc-badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+.badge-fail    { background: var(--terra-bg);    color: var(--terra); }
+.badge-win     { background: var(--sage-bg);     color: var(--sage); }
+.badge-partial { background: var(--mustard-bg);  color: var(--pine); }
+
+.acc-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--walnut);
+  line-height: 1.3;
+}
+.acc-subtitle {
+  font-size: 12px;
+  color: var(--n-text-muted);
+  margin-top: 2px;
+}
+
+.acc-chevron {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: var(--cream-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, background 0.2s;
+  flex-shrink: 0;
+  font-size: 10px;
+  color: var(--walnut);
+}
+.acc-item.open .acc-chevron {
+  transform: rotate(180deg);
+  background: var(--walnut);
+  color: var(--cream);
+}
+
+.acc-body {
+  display: none;
+  padding: 0 22px 20px;
+  border-top: 1px solid var(--n-border);
+}
+.acc-item.open .acc-body { display: block; }
+
+.acc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin-top: 16px;
+}
+.acc-cell { }
+.acc-cell-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--n-text-muted);
+  margin-bottom: 5px;
+}
+.acc-cell-text {
+  font-size: 13px;
+  color: var(--n-text-mid);
+  line-height: 1.6;
+}
+.acc-metric {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--sage);
+  background: var(--sage-bg);
+  padding: 2px 8px;
+  border-radius: var(--r-sm);
+  margin: 2px 0;
+}
+.acc-metric.bad { color: var(--terra); background: var(--terra-bg); }
+.acc-metric.mid { color: var(--pine);  background: var(--mustard-bg); }
+
+/* ─── TRADEOFF HIGHLIGHT ─── */
+.tradeoff-block {
+  background: var(--cream-dark);
+  border-radius: var(--r-xl);
+  padding: 30px;
+  margin: 28px 0;
+  border: 1px solid var(--n-border);
+}
+.tb-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.tb-icon {
+  width: 40px; height: 40px;
+  border-radius: var(--r-md);
+  background: var(--walnut);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+.tb-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  color: var(--walnut);
+  font-weight: 400;
+}
+.tb-sub { font-size: 12px; color: var(--n-text-muted); }
+.tb-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.tb-col {
+  background: var(--n-white);
+  border-radius: var(--r-md);
+  padding: 16px 18px;
+  border: 1px solid var(--n-border);
+}
+.tb-col-head {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.tb-col.chosen .tb-col-head { color: var(--sage); }
+.tb-col.rejected .tb-col-head { color: var(--terra); }
+.tb-point {
+  font-size: 13px;
+  color: var(--n-text-mid);
+  line-height: 1.55;
+  padding: 5px 0;
+  border-bottom: 1px solid var(--n-border);
+  display: flex;
+  gap: 8px;
+}
+.tb-point:last-child { border-bottom: none; }
+.tb-dot { flex-shrink: 0; margin-top: 3px; }
+
+/* ─── LEARNINGS ─── */
+.learn-wrap { margin: 24px 0; }
+.learn-card {
+  background: var(--n-white);
+  border: 1px solid var(--n-border);
+  border-radius: var(--r-lg);
+  padding: 22px;
+  margin-bottom: 12px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 16px;
+  align-items: start;
+  transition: border-color 0.2s, transform 0.15s;
+}
+.learn-card:hover {
+  border-color: var(--walnut-light);
+  transform: translateX(3px);
+}
+.learn-type-badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border-radius: var(--r-sm);
+  white-space: nowrap;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  height: fit-content;
+}
+.badge-nonobv { background: var(--walnut); color: var(--cream); }
+.badge-obv    { background: var(--cream-dark); color: var(--n-text-muted); }
+
+.learn-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--walnut);
+  margin-bottom: 6px;
+  line-height: 1.35;
+}
+.learn-text {
+  font-size: 13px;
+  color: var(--n-text-mid);
+  line-height: 1.65;
+}
+
+/* ─── IMPACT STRIP ─── */
+.impact-strip {
+  background: var(--walnut);
+  border-radius: var(--r-xl);
+  padding: 32px;
+  margin: 28px 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+}
+.imp-item {
+  padding: 0 20px;
+  border-right: 1px solid rgba(255,255,255,0.1);
+  text-align: center;
+}
+.imp-item:last-child { border-right: none; }
+.imp-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 34px;
+  color: var(--pine-light);
+  font-weight: 600;
+  line-height: 1;
+}
+.imp-label { font-size: 11px; color: rgba(245,239,224,0.45); margin-top: 6px; line-height: 1.4; }
+
+/* ─── FOOTER ─── */
+.footer {
+  background: var(--walnut);
+  margin-top: 80px;
+  padding: 40px 36px;
+  text-align: center;
+}
+.footer-name { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--cream); font-weight: 400; margin-bottom: 4px; }
+.footer-role { font-size: 12px; color: rgba(245,239,224,0.45); }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 600px) {
+  .hero h1 { font-size: 36px; }
+  .metrics-inner { grid-template-columns: repeat(2, 1fr); }
+  .met { padding: 24px 16px; }
+  .obs-grid, .strat-grid, .ba-rows, .impact-strip { grid-template-columns: 1fr; }
+  .tb-cols, .acc-grid { grid-template-columns: 1fr; }
+  .ba-row:nth-child(even) { border-right: 1px solid var(--n-border); }
+  .ba-row:nth-last-child(-n+2) { border-bottom: 1px solid var(--n-border); }
+  .ba-row:last-child { border-bottom: none; }
+  .imp-item { border-right: none; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .imp-item:last-child { border-bottom: none; }
+  .learn-card { grid-template-columns: 1fr; }
+  .learn-type-badge { writing-mode: horizontal-tb; transform: none; width: fit-content; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">Operations Strategy · Systems Design · No-Code</div>
+    <h1>Scaling coordination<br>without <em>scaling headcount</em></h1>
+    <p class="hero-sub">How I built the operational infrastructure for a craft supply chain to grow 4× — by diagnosing the real constraint, designing for how suppliers actually work, and making deliberate trade-offs at every stage.</p>
+    <div class="hero-chips">
+      <div class="hero-chip"><span class="hc-label">Company</span><span class="hc-value">SoulSpiti · Craft e-commerce</span></div>
+      <div class="hero-chip"><span class="hc-label">Timeline</span><span class="hc-value">Jan 2024 – Apr 2026 · 27 months</span></div>
+      <div class="hero-chip"><span class="hc-label">Role</span><span class="hc-value">Product Manager</span></div>
+      <div class="hero-chip"><span class="hc-label">Stack</span><span class="hc-value">Make.com · Airtable · WhatsApp API</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- METRICS -->
+<section class="metrics">
+  <div class="metrics-inner">
+    <div class="met"><span class="met-num">4×</span><div class="met-label">order volume growth</div></div>
+    <div class="met"><span class="met-num">−95%</span><div class="met-label">coordination time</div></div>
+    <div class="met"><span class="met-num">−68%</span><div class="met-label">cancellation rate</div></div>
+    <div class="met"><span class="met-num">50×</span><div class="met-label">first-year ROI</div></div>
+  </div>
+</section>
+
+<!-- STRATEGY RIBBON -->
+<div class="strategy-ribbon">
+  <div class="sr-inner">
+    <span class="sr-label">Strategic themes</span>
+    <div class="sr-pills">
+      <span class="sr-pill">Supply chain operations</span>
+      <span class="sr-pill">User behaviour research</span>
+      <span class="sr-pill">Build vs buy trade-offs</span>
+      <span class="sr-pill">Iterative system design</span>
+      <span class="sr-pill">Automation strategy</span>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- 01 PROBLEM -->
+  <section class="section">
+    <div class="section-eyebrow"><div class="s-num">01</div><span class="s-tag">Strategic Context · The Problem</span></div>
+    <h2 class="section-title">The coordination system was a person. That's a scale ceiling, not a process.</h2>
+    <div class="body-text">
+      <p>SoulSpiti connects customers to a regional network of independent craft suppliers. In early 2024, the entire order fulfilment operation — supplier assignment, production tracking, follow-ups, exception handling — ran through a single person's WhatsApp thread and mental model. This is a common pattern in early-stage operations: founder knowledge substitutes for system design.</p>
+      <p>The strategic problem isn't that things break. It's that the failure mode of a human-dependent system is invisible until it's catastrophic. At 100 orders/month it was survivable friction. At 150+ it was a growth blocker. A high-demand date triggered the moment of visibility: six customers received nothing, cancellation rate hit 30%, and complaints became public. The event wasn't the problem — it was the diagnostic.</p>
+    </div>
+
+    <div class="callout walnut">
+      <div class="c-label">The real constraint — not a supplier problem</div>
+      <div class="c-text">The incident was blamed on a supplier misreading a message. But the underlying structure was: <strong>no order format, no acknowledgement loop, no capacity visibility, no fallback routing, no audit trail.</strong> Every element of a coordination system was missing. Fixing supplier behaviour wouldn't have changed the outcome — the same failure would recur in a different form. The intervention had to be structural.</div>
+    </div>
+
+    <!-- Before/After Toggle -->
+    <div class="ba-wrap">
+      <div class="ba-toggle">
+        <button class="ba-btn active" onclick="toggleBA('before', this)">Before · Jan 2024</button>
+        <button class="ba-btn" onclick="toggleBA('after', this)">After · Apr 2026</button>
+      </div>
+      <div class="ba-panel before active" id="ba-before">
+        <div class="ba-card before">
+          <div class="ba-title">Baseline state · Jan 2024</div>
+          <div class="ba-rows">
+            <div class="ba-row"><span class="ba-k">Monthly orders</span><span class="ba-v">100 (25% cancel)</span></div>
+            <div class="ba-row"><span class="ba-k">Supplier network</span><span class="ba-v">9, via personal chat</span></div>
+            <div class="ba-row"><span class="ba-k">Coordination load</span><span class="ba-v">40 hrs/week</span></div>
+            <div class="ba-row"><span class="ba-k">Complaint rate</span><span class="ba-v">30%</span></div>
+            <div class="ba-row"><span class="ba-k">Routing method</span><span class="ba-v">Manual, memory-based</span></div>
+            <div class="ba-row"><span class="ba-k">Visibility</span><span class="ba-v">None — spreadsheets</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="ba-panel after" id="ba-after">
+        <div class="ba-card after">
+          <div class="ba-title">Outcome state · Apr 2026</div>
+          <div class="ba-rows">
+            <div class="ba-row"><span class="ba-k">Monthly orders</span><span class="ba-v">400 (8% cancel)</span></div>
+            <div class="ba-row"><span class="ba-k">Supplier network</span><span class="ba-v">30, auto-routed</span></div>
+            <div class="ba-row"><span class="ba-k">Coordination load</span><span class="ba-v">2 hrs/week</span></div>
+            <div class="ba-row"><span class="ba-k">Complaint rate</span><span class="ba-v">12.5%</span></div>
+            <div class="ba-row"><span class="ba-k">Routing method</span><span class="ba-v">94–96% automated</span></div>
+            <div class="ba-row"><span class="ba-k">Visibility</span><span class="ba-v">Real-time dashboards</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 02 DIAGNOSIS -->
+  <section class="section">
+    <div class="section-eyebrow"><div class="s-num">02</div><span class="s-tag">Diagnosis · Reading the Signal</span></div>
+    <h2 class="section-title">The first design was right in structure. Wrong about the users it was designed for.</h2>
+    <div class="body-text">
+      <p>The initial solution was logically sound: automate dispatch via WhatsApp, structure the order format, log acknowledgements. It moved fast. It went live quickly. And it surfaced a 68% supplier non-response rate within days.</p>
+      <p>That number was not a failure — it was diagnostic information. The structure was right; the model of the user was wrong. Craft supplier networks have specific, non-obvious patterns of technology use that don't surface from a product brief. They require observation.</p>
+    </div>
+
+    <div class="callout mustard">
+      <div class="c-label">What the data pointed to</div>
+      <div class="c-text">Three systematic failure patterns in the response data: <strong>timing</strong> (messages arriving outside the windows suppliers actually check their phones), <strong>format</strong> (reply parsing too rigid for how this user group communicates), and <strong>information hierarchy</strong> (message structure placing job details before the one piece of information suppliers evaluate first — payment terms). None of these are generic automation mistakes. All three are industry-specific. Field research was the only path to them.</div>
+    </div>
+
+    <div class="pq">
+      <p>"The first version didn't fail because it was poorly built. It failed because craft supplier networks have specific patterns of technology use that you can only learn by being there."</p>
+      <cite>Observation · Feb 2024</cite>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 03 RESEARCH -->
+  <section class="section">
+    <div class="section-eyebrow"><div class="s-num">03</div><span class="s-tag">User Research · Behavioural Findings</span></div>
+    <h2 class="section-title">Designing for how suppliers actually work, not how we assumed they would.</h2>
+    <div class="body-text">
+      <p>I visited three suppliers at their workshops — 6+ hours each, observing rather than interviewing. The goal was to answer four questions: when do they engage with their phones, how do they evaluate incoming work, what do they read first, and what do they skip entirely?</p>
+    </div>
+
+    <div class="obs-grid">
+      <div class="obs-card">
+        <div class="obs-icon">⏰</div>
+        <div class="obs-title">Phone engagement happens in 3 narrow windows</div>
+        <div class="obs-text">Suppliers are craftspeople first. Phones are checked during work breaks — morning, midday, evening. Messages outside these windows go unseen for hours regardless of urgency.</div>
+        <span class="obs-tag">→ Redesigned: send scheduling logic</span>
+      </div>
+      <div class="obs-card">
+        <div class="obs-icon">💰</div>
+        <div class="obs-title">Payment is the first decision filter, always</div>
+        <div class="obs-text">Before reading any job detail, suppliers scan for the payment figure. Buried payment = slower decision. Payment in line 1 = faster acknowledgement. This is a cognitive load pattern, not a preference.</div>
+        <span class="obs-tag">→ Redesigned: message hierarchy</span>
+      </div>
+      <div class="obs-card">
+        <div class="obs-icon">✂️</div>
+        <div class="obs-title">Two lines is the real reading limit</div>
+        <div class="obs-text">Longer messages were handed off or skipped. This is not about literacy — it's about attention during a work break. The decision had to work in a single glance.</div>
+        <span class="obs-tag">→ Redesigned: message length</span>
+      </div>
+      <div class="obs-card">
+        <div class="obs-icon">💬</div>
+        <div class="obs-title">Reply signals are informal and varied</div>
+        <div class="obs-text">Affirmative signals in this context come in multiple regional and informal forms. Rigid "Reply YES" parsing rejected most of them. Flexible natural-language parsing was required.</div>
+        <span class="obs-tag">→ Redesigned: reply parsing</span>
+      </div>
+    </div>
+
+    <div class="callout sage">
+      <div class="c-label">Two operational constraints — not visible without field context</div>
+      <div class="c-text">Research also surfaced two hard limits that had to be built into routing logic: <strong>natural capacity ceiling</strong> (~10–12 jobs/month per supplier before quality declined) and <strong>weekly material restocking cycles</strong>. Both are industry-specific. Neither appears in a product brief. Routing that ignored them would have produced technically successful assignments that physically couldn't be fulfilled.</div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 04 ITERATION -->
+  <section class="section">
+    <div class="section-eyebrow"><div class="s-num">04</div><span class="s-tag">Iteration · Build → Learn → Rebuild</span></div>
+    <h2 class="section-title">Each iteration was narrow by design. One hypothesis, one measurement, one decision.</h2>
+    <div class="body-text">
+      <p>Rather than rebuilding the full system at once, I sequenced interventions by problem severity and confidence level. This wasn't caution — it was signal preservation. Full rebuilds obscure causation. Narrow changes make it clear what moved the metric.</p>
+    </div>
+
+    <div class="acc-wrap">
+      <!-- V1 -->
+      <div class="acc-item" id="acc1">
+        <div class="acc-header" onclick="toggleAcc('acc1')">
+          <div class="acc-left">
+            <span class="acc-badge badge-fail">Did not work</span>
+            <div>
+              <div class="acc-title">V1 · Initial automation</div>
+              <div class="acc-subtitle">Structured dispatch, rigid format, random scheduling</div>
+            </div>
+          </div>
+          <div class="acc-chevron">▼</div>
+        </div>
+        <div class="acc-body">
+          <div class="acc-grid">
+            <div class="acc-cell">
+              <div class="acc-cell-label">What I changed</div>
+              <div class="acc-cell-text">Automated WhatsApp dispatch replacing manual messages. Structured format. Yes/no reply parsing. Automatic logging.</div>
+            </div>
+            <div class="acc-cell">
+              <div class="acc-cell-label">Strategic rationale</div>
+              <div class="acc-cell-text">Fastest path to removing the manual bottleneck. Structure existed; the assumption was suppliers would adapt to a clear format.</div>
+            </div>
+            <div class="acc-cell">
+              <div class="acc-cell-label">Result &amp; signal</div>
+              <div class="acc-cell-text"><span class="acc-metric bad">68% non-response</span><br>Not random failure — systematic non-engagement. Pointed directly at user model misalignment, not technical issues.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- V2 -->
+      <div class="acc-item" id="acc2">
+        <div class="acc-header" onclick="toggleAcc('acc2')">
+          <div class="acc-left">
+            <span class="acc-badge badge-win">Worked</span>
+            <div>
+              <div class="acc-title">V2 · Message redesign</div>
+              <div class="acc-subtitle">Research-led rebuild — language, structure, timing, fallback logic</div>
+            </div>
+          </div>
+          <div class="acc-chevron">▼</div>
+        </div>
+        <div class="acc-body">
+          <div class="acc-grid">
+            <div class="acc-cell">
+              <div class="acc-cell-label">What I changed</div>
+              <div class="acc-cell-text">Regional language. Payment-first message hierarchy. Timed sends aligned to break patterns. Flexible natural-language reply parsing. 6-hour timeout + reminder + fallback routing chain.</div>
+            </div>
+            <div class="acc-cell">
+              <div class="acc-cell-label">Strategic rationale</div>
+              <div class="acc-cell-text">Every change mapped directly to a field observation. No speculative improvements — only changes with a clear behavioural basis. Kept scope narrow to validate the research.</div>
+            </div>
+            <div class="acc-cell">
+              <div class="acc-cell-label">Result &amp; signal</div>
+              <div class="acc-cell-text"><span class="acc-metric">88% response rate</span><span class="acc-metric">3.2 hr avg response</span><span class="acc-metric">82% acceptance</span><br>Research translated cleanly. Supplier-side communication solved.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- OMS V2 -->
+      <div class="acc-item" id="acc3">
+        <div class="acc-header" onclick="toggleAcc('acc3')">
+          <div class="acc-left">
+            <span class="acc-badge badge-win">Worked</span>
+            <div>
+              <div class="acc-title">OMS V2.0 · Intelligent routing</div>
+              <div class="acc-subtitle">Shopify → Make.com → Airtable → WhatsApp pipeline</div>
+            </div>
+          </div>
+          <div class="acc-chevron">▼</div>
+        </div>
+        <div class="acc-body">
+          <div class="acc-grid">
+            <div class="acc-cell">
+              <div class="acc-cell-label">What I changed</div>
+              <div class="acc-cell-text">Full routing pipeline: skill matching, workload cap enforcement, inventory check, quality score filter, automatic fallback chain. Real-time Airtable dashboards for capacity and pipeline visibility.</div>
+            </div>
+            <div class="acc-cell">
+              <div class="acc-cell-label">Strategic rationale</div>
+              <div class="acc-cell-text">V2 proved supplier communication worked. The remaining bottleneck was manual order assignment — still requiring 15 hrs/week of human judgment for decisions that were largely rule-based.</div>
+            </div>
+            <div class="acc-cell">
+              <div class="acc-cell-label">Result &amp; signal</div>
+              <div class="acc-cell-text"><span class="acc-metric">94% auto-routing</span><span class="acc-metric">2 hrs/week coordination</span><br>Target achieved week 3. Stable for 13+ months. Supplier network scaled 3× without proportional ops cost.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Photo QC -->
+      <div class="acc-item" id="acc4">
+        <div class="acc-header" onclick="toggleAcc('acc4')">
+          <div class="acc-left">
+            <span class="acc-badge badge-partial">Partial — open problem</span>
+            <div>
+              <div class="acc-title">Photo QC · Pre-dispatch quality gate</div>
+              <div class="acc-subtitle">Upstream defect catch before orders ship</div>
+            </div>
+          </div>
+          <div class="acc-chevron">▼</div>
+        </div>
+        <div class="acc-body">
+          <div class="acc-grid">
+            <div class="acc-cell">
+              <div class="acc-cell-label">What I changed</div>
+              <div class="acc-cell-text">Supplier marks "Packed" → automated photo request (3 angles) → image storage → ops review within 6 hrs → approve/reject before dispatch is allowed.</div>
+            </div>
+            <div class="acc-cell">
+              <div class="acc-cell-label">Strategic rationale</div>
+              <div class="acc-cell-text">Complaint rate held at 16–17% despite routing improvements. Defects were reaching customers post-dispatch — unreturnable, already damaging to brand. QC gate had to move upstream of shipping.</div>
+            </div>
+            <div class="acc-cell">
+              <div class="acc-cell-label">Result &amp; signal</div>
+              <div class="acc-cell-text"><span class="acc-metric">13–15% defects caught</span><span class="acc-metric mid">8% non-compliance</span><br>Complaints: 16% → 12.5%. But 8% of suppliers still skip the step — a design problem, not a discipline problem. Unsolved.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 05 BUILD DECISION -->
+  <section class="section">
+    <div class="section-eyebrow"><div class="s-num">05</div><span class="s-tag">Strategic Decision · No-Code vs Custom Build</span></div>
+    <h2 class="section-title">The build decision was a strategy call, not a technical preference.</h2>
+    <div class="body-text">
+      <p>Before building OMS V2.0, I had a real choice with different risk profiles. I framed it as a strategy question: what does the business need to learn in the next 6 months, and which build path preserves the most optionality while answering that question?</p>
+    </div>
+
+    <div class="tradeoff-block">
+      <div class="tb-header">
+        <div class="tb-icon">⚖️</div>
+        <div><div class="tb-title">The trade-off</div><div class="tb-sub">No-code (Make.com + Airtable) vs custom development</div></div>
+      </div>
+      <div class="tb-cols">
+        <div class="tb-col chosen">
+          <div class="tb-col-head">Chosen · No-code</div>
+          <div class="tb-point"><span class="tb-dot">✓</span>8-week build vs 4+ months</div>
+          <div class="tb-point"><span class="tb-dot">✓</span>~8% monthly cost of equivalent custom-dev maintenance</div>
+          <div class="tb-point"><span class="tb-dot">✓</span>Full internal ownership — changes without developer dependency</div>
+          <div class="tb-point"><span class="tb-dot">✓</span>50× ROI in year one</div>
+          <div class="tb-point"><span class="tb-dot">⚠</span>Ceiling: Make.com complexity hits limits at scale</div>
+        </div>
+        <div class="tb-col rejected">
+          <div class="tb-col-head">Rejected · Custom dev</div>
+          <div class="tb-point"><span class="tb-dot">✗</span>4+ month build — delays learning by a quarter</div>
+          <div class="tb-point"><span class="tb-dot">✗</span>3–5× upfront cost with ongoing maintenance dependency</div>
+          <div class="tb-point"><span class="tb-dot">✗</span>Every iteration requires developer time</div>
+          <div class="tb-point"><span class="tb-dot">✗</span>Premature sophistication for unproven routing logic</div>
+          <div class="tb-point"><span class="tb-dot">✓</span>More scalable at high volume — the right call later</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="strat-grid">
+      <div class="strat-card">
+        <div class="sc-eye">The actual bet</div>
+        <div class="sc-title">Speed of learning over sophistication of output</div>
+        <div class="sc-text">At this stage, the most valuable thing was learning whether the routing logic worked at all — not building something with headroom for scale we hadn't proven. Fast + owned beats slow + powerful when the hypothesis is still open.</div>
+        <span class="sc-badge badge-chose">Validated</span>
+      </div>
+      <div class="strat-card">
+        <div class="sc-eye">The accepted risk</div>
+        <div class="sc-title">No-code has a ceiling — and we'll hit it</div>
+        <div class="sc-text">At current growth, Make.com scenario complexity becomes a constraint within 12–18 months. The right time to plan migration is before it breaks. This was a deliberate decision to defer, not ignore.</div>
+        <span class="sc-badge badge-risk">Open risk</span>
+      </div>
+      <div class="strat-card accent">
+        <div class="sc-eye">What made it work</div>
+        <div class="sc-title">120 hours of investment before building</div>
+        <div class="sc-text">I spent 3 weeks learning the stack before writing a single automation — Make.com, Airtable as relational DB, integration patterns. The investment was the decision. It meant every subsequent iteration was fast because there was no dependency.</div>
+      </div>
+      <div class="strat-card">
+        <div class="sc-eye">The 94% principle</div>
+        <div class="sc-title">Deliberate incompleteness as a design strategy</div>
+        <div class="sc-text">Targeting 94% auto-routing, not 100%, was a strategic choice. The 6% human override handles cases that no rule can anticipate cleanly — unusual materials, supplier conflicts, complex custom work. Hybrid beats brittle.</div>
+        <span class="sc-badge badge-tradeoff">Trade-off</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 06 IMPACT -->
+  <section class="section">
+    <div class="section-eyebrow"><div class="s-num">06</div><span class="s-tag">Impact · 27 Months</span></div>
+    <h2 class="section-title">The system held. And kept improving as the network scaled.</h2>
+
+    <div class="impact-strip">
+      <div class="imp-item">
+        <div class="imp-num">3×</div>
+        <div class="imp-label">Supplier network growth with no proportional ops cost increase</div>
+      </div>
+      <div class="imp-item">
+        <div class="imp-num">−17pp</div>
+        <div class="imp-label">Cancellation rate reduction (25% → 8%)</div>
+      </div>
+      <div class="imp-item">
+        <div class="imp-num">13mo</div>
+        <div class="imp-label">Stable at 94–96% auto-routing without regression</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 07 LEARNINGS -->
+  <section class="section">
+    <div class="section-eyebrow"><div class="s-num">07</div><span class="s-tag">Learnings · Obvious and Non-Obvious</span></div>
+    <h2 class="section-title">What this project taught me that generalises.</h2>
+
+    <div class="learn-wrap">
+      <div class="learn-card">
+        <span class="learn-type-badge badge-nonobv">Non-obvious</span>
+        <div>
+          <div class="learn-title">Operational failures are the best product briefs you'll ever get</div>
+          <div class="learn-text">The Valentine's Day incident gave me more precise problem definition than any discovery workshop would have. Real failures name the exact gap — no format, no acknowledgement, no fallback. I've started treating operational incidents as the most honest user research available.</div>
+        </div>
+      </div>
+      <div class="learn-card">
+        <span class="learn-type-badge badge-nonobv">Non-obvious</span>
+        <div>
+          <div class="learn-title">Communication design for a supply chain is product design — not ops</div>
+          <div class="learn-text">The message template — word order, language register, payment placement, reply flexibility — had more measurable impact on system performance than any technical improvement. Most PMs hand that to operations. It needed PM-level attention to information architecture and user behaviour.</div>
+        </div>
+      </div>
+      <div class="learn-card">
+        <span class="learn-type-badge badge-nonobv">Non-obvious</span>
+        <div>
+          <div class="learn-title">The 8% photo QC non-compliance is a product design failure, not a behaviour problem</div>
+          <div class="learn-text">8% of suppliers skip the photo step consistently. First instinct: add enforcement. Better question: what makes this step feel like extra work rather than part of the job? The flow asks suppliers to stop, photograph, upload, and wait — that's four interruptions to the craft workflow. The solution is integration, not compliance.</div>
+        </div>
+      </div>
+      <div class="learn-card">
+        <span class="learn-type-badge badge-obv">Expected</span>
+        <div>
+          <div class="learn-title">Narrow iterations preserve causation — wide rebuilds destroy it</div>
+          <div class="learn-text">I could have rebuilt everything after the first failure. Instead I changed one variable at a time. That discipline made it possible to say with confidence what moved response rate from 68% to 88%. Without it, you have results but no understanding — and no ability to replicate them.</div>
+        </div>
+      </div>
+      <div class="learn-card">
+        <span class="learn-type-badge badge-nonobv">Non-obvious</span>
+        <div>
+          <div class="learn-title">Ownership is a strategic asset, not a consolation for build constraints</div>
+          <div class="learn-text">Choosing no-code wasn't about budget — it was about iteration speed. Every improvement to routing logic, every adjustment to the message format, every dashboard change happened same-day because there was no developer queue. That speed compounded. The 4× growth over 27 months was partly a function of how fast the system could adapt to what we learned.</div>
+        </div>
+      </div>
+      <div class="learn-card">
+        <span class="learn-type-badge badge-obv">Expected</span>
+        <div>
+          <div class="learn-title">Progressive rollout is harder to hold to than it sounds under pressure</div>
+          <div class="learn-text">3 suppliers → 7 → 14 → 30. Each stage revealed failure modes that would have been expensive at full scale. Obvious in principle. In practice, there was constant pressure to move faster — and holding the line on staged rollout was an active, repeated decision, not a plan that ran itself.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-name">Vidhi Gupta</div>
+  <div class="footer-role">Product Manager · SoulSpiti Operations Management System · Jan 2024 – Apr 2026</div>
+</div>
+
+<script>
+function toggleBA(panel, btn) {
+  document.querySelectorAll('.ba-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.ba-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('ba-' + panel).classList.add('active');
+  btn.classList.add('active');
+}
+
+function toggleAcc(id) {
+  const item = document.getElementById(id);
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.acc-item').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+
+// Animate metrics on load
+document.addEventListener('DOMContentLoaded', function() {
+  const nums = document.querySelectorAll('.met-num');
+  nums.forEach(function(el) {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(12px)';
+    el.style.transition = 'opacity 0.5s, transform 0.5s';
+  });
+  setTimeout(function() {
+    nums.forEach(function(el, i) {
+      setTimeout(function() {
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+      }, i * 100);
+    });
+  }, 200);
+});
+</script>
+</body>
+</html>
